@@ -5,7 +5,7 @@ const Post = (props) => {
   return (
     <div className={classes.post}>
 
-      <img alt='#' href='https://cdn.pixabay.com/photo/2016/11/14/13/48/aerial-1823546_960_720.jpg' />
+      <img alt='#' src='https://cdn.pixabay.com/photo/2016/11/14/13/48/aerial-1823546_960_720.jpg' />
 
       { props.message }
 
