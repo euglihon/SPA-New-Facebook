@@ -1,9 +1,13 @@
+* {
+  margin: 0;
+}
+
 .app-wrapper {
   margin: 0 auto;
   width: 1200px;
   display: grid;
-  
-  grid-template-areas: 
+
+  grid-template-areas:
     'h h'
     'n c';
 
