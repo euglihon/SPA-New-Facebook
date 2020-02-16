@@ -3,13 +3,14 @@ import classes from './Profile.module.css';
 import MyPosts from './MyPosts/MyPosts';
 import ProfInfo from './ProfInfo/ProfInfo';
 
-const Profile = () => {
+const Profile = (props) => {
+
   return (
     <div>
 
       <ProfInfo />
 
-      <MyPosts />
+      <MyPosts posts={props.localState.posts}/>
 
     </div>
   )

@@ -1,0 +1,11 @@
+.nav a {
+  margin-left: 25px;
+  padding: 5px;
+  display: block;
+  color: #fff;
+  text-decoration: none;
+}
+
+a.activeLink {
+  color: red;
+}

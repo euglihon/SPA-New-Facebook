@@ -1,31 +1,26 @@
 import React from 'react';
 import classes from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
-import MessagesItem from './MessagesItem/MessagesItem';
+import MessagesItemIn from './MessagesItemIn/MessagesItemIn';
+import MessagesItemOut from './MessageItemsOut/MessageItemsOut';
 
-const Dialogs = () => {
+const Dialogs = (props) => {
 
-  const dialogData = [
-    {id: 1, name: 'Zeka'},
-    {id: 2, name: 'Andrey'},
-    {id: 3, name: 'Kolek'}
-  ];
-
-  const messageData = [
-    {id: 1, messageText: 'Hello'},
-    {id: 2, messageText: 'It\'s my first message'},
-    {id:3, messageText: 'lol'}
-  ];
-
-  let dialogItems = dialogData.map( (dialogElement) => {
+  let dialogItems = props.localState.dialogs.map( (dialogElement) => {
     return (
       <DialogItem id={dialogElement.id} name={dialogElement.name} />
     )
   });
 
-  let messageItems = messageData.map(  (messageElement) => {
+  let messageItemsIn = props.localState.messagesIn.map(  (messageElement) => {
     return (
-      <MessagesItem messageText={messageElement.messageText} />
+      <MessagesItemIn messageText={messageElement.messageText} />
+    )
+  });
+
+  let messageItemsOut = props.localState.messagesOut.map(  (messageElement) => {
+    return (
+      <MessagesItemOut messageText={messageElement.messageText} />
     )
   });
 
@@ -37,7 +32,11 @@ const Dialogs = () => {
       </div>
 
       <div className={classes.messagesItems}>
-        { messageItems }
+        { messageItemsIn }
+
+
+
+        { messageItemsOut }
       </div>
 
     </div>

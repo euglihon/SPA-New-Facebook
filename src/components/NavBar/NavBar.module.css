@@ -1,16 +1,11 @@
-.nav {
+.navBar{
   grid-area: n;
   background-color: greenyellow;
 }
 
-a{
-  margin-left: 25px;
-  padding: 5px;
-  display: block;
-  color: #fff;
-  text-decoration: none;
-}
+.friendContainer {
+  display: flex;
+  flex-wrap: wrap;
 
-a.activeLink {
-  color: red;
+  background-color: aquamarine;
 }

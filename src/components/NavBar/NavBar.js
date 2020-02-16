@@ -1,52 +1,29 @@
 import React from 'react';
 
 import classes from'./NavBar.module.css'
-import { NavLink } from 'react-router-dom';
+import MainLinksBlock from './MainLinksBlock/MainLinksBlock';
+import FriendsBlock from './FriendsBlock/FriendsBlock';
 
-const NavBar = () => {
+const NavBar = (props) => {
+
   return (
-    <nav className={classes.nav}>
-      <div>
-        <NavLink
-          to='/profile'
-          activeClassName={classes.activeLink}
-        >
-          Profile
-        </NavLink>
+    <div className={classes.navBar}>
+      <MainLinksBlock />
+
+
+      <b>Friends</b>
+
+      <div className={classes.friendContainer}>
+        {
+          props.friends.map(  (friendsElement) => {
+            return (
+              <FriendsBlock name={friendsElement.name} />
+            )
+          })
+        }
       </div>
-      <div>
-        <NavLink
-          to='/messages'
-          activeClassName={classes.activeLink}
-        >
-          Messages
-        </NavLink>
-      </div>
-      <div>
-        <NavLink
-          to='/news'
-          activeClassName={classes.activeLink}
-        >
-          News
-        </NavLink>
-      </div>
-      <div>
-        <NavLink
-          to='/music'
-          activeClassName={classes.activeLink}
-        >
-          Music
-        </NavLink>
-      </div>
-      <div>
-        <NavLink
-          to='/settings'
-          activeClassName={classes.activeLink}
-        >
-          Settings
-        </NavLink>
-      </div>
-    </nav>
+
+    </div>
   )
 }
 
