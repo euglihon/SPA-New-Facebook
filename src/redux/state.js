@@ -1,3 +1,5 @@
+import { renderAllTree } from "../render";
+
 const state = {
 
   profilePage: {
@@ -38,6 +40,14 @@ const state = {
     {id: 6, name: 'Pitr'},
     {id: 7, name: 'Serega'}
   ]
+}
+
+
+export const addPost = (newPostItem) => {
+  const newPost = { id: 3, messageText: newPostItem, likesCount:0 }
+  state.profilePage.posts.push(newPost);
+
+  renderAllTree(state)
 }
 
 export default state;
