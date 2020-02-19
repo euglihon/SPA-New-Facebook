@@ -11,13 +11,27 @@ const MyPosts = (props) => {
     )
   });
 
+
+
+
+  const newPostElement = React.createRef();
+
+  const addPostItem = () => {
+    const postItemText = newPostElement.current.value;
+    props.addPost(postItemText);
+
+    newPostElement.current.value = ''
+  }
+
+
+
   return (
     <div>
       My posts
 
       <div>
-        <textarea></textarea>
-        <button>add posts</button>
+        <textarea ref={ newPostElement }></textarea>
+        <button onClick={ addPostItem }>add posts</button>
       </div>
 
       <div>
