@@ -21,7 +21,7 @@ const App = (props) => {
         <div className='app-wrapper-content'>
 
           <Route path='/profile'
-            render={ () => <Profile localState={ props.state.profilePage }/> }
+            render={ () => <Profile localState={ props.state.profilePage } addPost={ props.addPost }/> }
           />
 
           <Route path='/messages'
