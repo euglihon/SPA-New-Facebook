@@ -3,6 +3,7 @@ import classes from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import MessagesItemIn from './MessagesItemIn/MessagesItemIn';
 import MessagesItemOut from './MessageItemsOut/MessageItemsOut';
+import NewMessage from './NewMessage/NewMessage';
 
 const Dialogs = (props) => {
 
@@ -33,11 +34,15 @@ const Dialogs = (props) => {
 
       <div className={classes.messagesItems}>
         { messageItemsIn }
-
-
-
         { messageItemsOut }
+
+
+
+        <NewMessage />
+
       </div>
+
+
 
     </div>
   )
