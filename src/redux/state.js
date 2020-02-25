@@ -1,4 +1,6 @@
-import { renderAllTree } from "../render";
+let reRender = () => {
+  console.log('reRenderTree');
+}
 
 const state = {
 
@@ -7,7 +9,8 @@ const state = {
     posts: [
       {id: 1, messageText: 'Hello New-Facebook', likesCount: 10},
       {id: 2, messageText: 'Hello React', likesCount: 5},
-    ]
+    ],
+    textareaValue: '',
   },
 
   dialogsPage: {
@@ -42,12 +45,21 @@ const state = {
   ]
 }
 
+window.state = state;
 
-export const addPost = (newPostItem) => {
-  const newPost = { id: 3, messageText: newPostItem, likesCount:0 }
+export const addPost = () => {
+  const newPost = { id: 3, messageText: state.profilePage.textareaValue, likesCount:0 }
   state.profilePage.posts.push(newPost);
+  reRender();
+}
 
-  renderAllTree(state)
+export const addTextareaValue = (newValue) => {
+  state.profilePage.textareaValue = newValue;
+  reRender();
+ }
+
+export const subscribe = (observer) => {
+  reRender = observer;
 }
 
 export default state;
