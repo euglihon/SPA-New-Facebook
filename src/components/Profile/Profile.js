@@ -10,7 +10,12 @@ const Profile = (props) => {
 
       <ProfInfo />
 
-      <MyPosts posts={props.localState.posts} addPost={props.addPost} />
+      <MyPosts
+        posts={props.localState.posts}
+        textareaValue={props.localState.textareaValue}
+        addPost={props.addPost}
+        addTextareaValue={props.addTextareaValue}
+        />
 
     </div>
   )

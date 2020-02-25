@@ -12,25 +12,29 @@ const MyPosts = (props) => {
   });
 
 
-
-
   const newPostElement = React.createRef();
 
   const addPostItem = () => {
-    const postItemText = newPostElement.current.value;
-    props.addPost(postItemText);
-
-    newPostElement.current.value = ''
+    props.addPost();
+    props.addTextareaValue('');
+    newPostElement.current.value = '';
   }
 
+  const onChangeText = () => {
+    const newValue = newPostElement.current.value;
+    props.addTextareaValue(newValue)
+  }
 
 
   return (
     <div>
-      My posts
+      <h3>My posts</h3>
 
       <div>
-        <textarea ref={ newPostElement }></textarea>
+        <textarea
+          onChange={ onChangeText }
+          ref={ newPostElement }
+        />
         <button onClick={ addPostItem }>add posts</button>
       </div>
 
