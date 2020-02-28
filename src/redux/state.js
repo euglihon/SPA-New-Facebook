@@ -43,28 +43,46 @@ const store = {
     ]
   },
 
-  getState() {
-    return this._state;
-  },
-
   _callSubscriber() {
     console.log('reRenderTree');
   },
 
-  addPost() {
-    const newPost = { id: 3, messageText: this._state.profilePage.textareaValue, likesCount:0 }
-    this._state.profilePage.posts.push(newPost);
-    this._callSubscriber();
+  getState() {
+    return this._state;
   },
-
-  addTextareaValue(newValue) {
-    this._state.profilePage.textareaValue = newValue;
-    this._callSubscriber();
-   },
 
   subscribe(observer) {
     this._callSubscriber = observer;
   },
+
+
+  // addPost() {
+  //   const newPost = { id: 3, messageText: this._state.profilePage.textareaValue, likesCount:0 }
+  //   this._state.profilePage.posts.push(newPost);
+  //   this._callSubscriber();
+  // },
+
+  // addTextareaValue(newValue) {
+  //   this._state.profilePage.textareaValue = newValue;
+  //   this._callSubscriber();
+  //  },
+
+
+   dispatch(action) {
+    if(action.type === 'ADD-POST') {
+      const newPost = { id: 3, messageText: this._state.profilePage.textareaValue, likesCount:0 }
+      this._state.profilePage.posts.push(newPost);
+      this._callSubscriber();
+    }
+
+    else if (action.type === 'ADD-TEXTAREA-VALUE') {
+      this._state.profilePage.textareaValue = action.newValue;
+      this._callSubscriber();
+    }
+   }
+
+
+
 }
 
 export default store;

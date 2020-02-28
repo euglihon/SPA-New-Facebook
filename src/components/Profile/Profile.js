@@ -13,8 +13,7 @@ const Profile = (props) => {
       <MyPosts
         posts={props.localState.posts}
         textareaValue={props.localState.textareaValue}
-        addPost={props.addPost}
-        addTextareaValue={props.addTextareaValue}
+        dispatch={props.dispatch}
         />
 
     </div>

@@ -5,7 +5,10 @@ import store from './redux/state';
 
 
 const renderTree = () => {
-  ReactDOM.render(<App state={store.getState()} addPost={store.addPost.bind(store)} addTextareaValue={store.addTextareaValue.bind(store)}/>, document.getElementById('root'));
+  ReactDOM.render(<App state={store.getState()}
+    dispatch={store.dispatch.bind(store)}
+    />,
+      document.getElementById('root'));
 }
 
 renderTree(store.getState());
