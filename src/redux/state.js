@@ -29,7 +29,9 @@ const store = {
         {id: 1, messageText: 'Hello React'},
         {id: 2, messageText: 'Ok'},
         {id: 3, messageText: 'Bye Bye'}
-      ]
+      ],
+
+      messageTextareaValue: ''
     },
 
     friends: [
@@ -67,8 +69,23 @@ const store = {
       this._state.profilePage.textareaValue = action.newValue;
       this._callSubscriber();
     }
+
+
+    else if (action.type === 'ADD-MESSAGE') {
+      const newMessage = {id: 3, messageText: this._state.dialogsPage.messageTextareaValue};
+      this._state.dialogsPage.messagesOut.push(newMessage)
+      this._callSubscriber();
+    }
+
+    else if (action.type === 'ADD-MESSAGE-VALUE') {
+      this._state.dialogsPage.messageTextareaValue = action.newValue;
+      this._callSubscriber();
+    }
   }
 }
+
+
+
 
 export const addPostActionCreator = () => {
   return {
@@ -79,8 +96,31 @@ export const addPostActionCreator = () => {
 export const updateNewValueActionCreator = (text) => {
   return {
     type: 'ADD-TEXTAREA-VALUE',
-    newValue: text,
+    newValue: text
   }
 };
+
+
+
+export const addMessageActionCreator = () => {
+  return {
+    type: 'ADD-MESSAGE'
+  }
+};
+
+export const updateMessageValueActionCreator = (text) => {
+
+
+  return {
+    type: 'ADD-MESSAGE-VALUE',
+    newValue: text
+  }
+}
+
+
+
+
+
+
 
 export default store;

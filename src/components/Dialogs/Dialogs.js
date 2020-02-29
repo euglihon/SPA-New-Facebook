@@ -37,8 +37,7 @@ const Dialogs = (props) => {
         { messageItemsOut }
 
 
-
-        <NewMessage />
+        <NewMessage  messageTextareaValue={props.localState.messageTextareaValue} dispatch={props.dispatch} />
 
       </div>
 

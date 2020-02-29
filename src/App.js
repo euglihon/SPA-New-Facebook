@@ -27,7 +27,10 @@ const App = (props) => {
           />
 
           <Route path='/messages'
-            render={ () => <Dialogs localState={ props.state.dialogsPage } /> }
+            render={ () => <Dialogs
+              localState={ props.state.dialogsPage }
+              dispatch={props.dispatch}
+              /> }
           />
 
         </div>
