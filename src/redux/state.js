@@ -56,19 +56,7 @@ const store = {
   },
 
 
-  // addPost() {
-  //   const newPost = { id: 3, messageText: this._state.profilePage.textareaValue, likesCount:0 }
-  //   this._state.profilePage.posts.push(newPost);
-  //   this._callSubscriber();
-  // },
-
-  // addTextareaValue(newValue) {
-  //   this._state.profilePage.textareaValue = newValue;
-  //   this._callSubscriber();
-  //  },
-
-
-   dispatch(action) {
+  dispatch(action) {
     if(action.type === 'ADD-POST') {
       const newPost = { id: 3, messageText: this._state.profilePage.textareaValue, likesCount:0 }
       this._state.profilePage.posts.push(newPost);
@@ -79,10 +67,20 @@ const store = {
       this._state.profilePage.textareaValue = action.newValue;
       this._callSubscriber();
     }
-   }
-
-
-
+  }
 }
+
+export const addPostActionCreator = () => {
+  return {
+    type: 'ADD-POST'
+  }
+};
+
+export const updateNewValueActionCreator = (text) => {
+  return {
+    type: 'ADD-TEXTAREA-VALUE',
+    newValue: text,
+  }
+};
 
 export default store;
