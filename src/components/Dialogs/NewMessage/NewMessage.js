@@ -8,25 +8,22 @@ const NewMessage = (props) => {
 
  console.log(props)
 
-  const newDialogMessage = React.createRef();
-
 
   const addMessageItem = () => {
     props.dispatch( addMessageActionCreator() );
     props.dispatch( updateMessageValueActionCreator('') );
   }
 
-  const updateMessageValue = () => {
-    const text = newDialogMessage.current.value;
+  const updateMessageValue = (event) => {
+    const text = event.target.value;
     props.dispatch( updateMessageValueActionCreator(text) );
   }
 
 
 
-
   return (
     <div>
-      <textarea ref={ newDialogMessage }
+      <textarea
         onChange={ updateMessageValue }
         value={ props.messageTextareaValue }
       />
