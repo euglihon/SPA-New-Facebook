@@ -14,7 +14,7 @@ const Profile = (props) => {
         posts={props.localState.posts}
         textareaValue={props.localState.textareaValue}
         dispatch={props.dispatch}
-        />
+      />
 
     </div>
   )

@@ -1,3 +1,6 @@
+import dialogReducer from './dialogsReducer';
+import profileReducer from './profileReducer';
+
 const store = {
 
   _state: {
@@ -59,31 +62,12 @@ const store = {
 
 
   dispatch(action) {
-    if(action.type === 'ADD-POST') {
-      const newPost = { id: 3, messageText: this._state.profilePage.textareaValue, likesCount:0 }
-      this._state.profilePage.posts.push(newPost);
-      this._callSubscriber();
-    }
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.dialogsPage = dialogReducer(this._state.dialogsPage, action);
 
-    else if (action.type === 'ADD-TEXTAREA-VALUE') {
-      this._state.profilePage.textareaValue = action.newValue;
-      this._callSubscriber();
-    }
-
-
-    else if (action.type === 'ADD-MESSAGE') {
-      const newMessage = {id: 3, messageText: this._state.dialogsPage.messageTextareaValue};
-      this._state.dialogsPage.messagesOut.push(newMessage)
-      this._callSubscriber();
-    }
-
-    else if (action.type === 'ADD-MESSAGE-VALUE') {
-      this._state.dialogsPage.messageTextareaValue = action.newValue;
-      this._callSubscriber();
-    }
-  }
+    this._callSubscriber();
+  },
 }
-
 
 
 
@@ -116,11 +100,6 @@ export const updateMessageValueActionCreator = (text) => {
     newValue: text
   }
 }
-
-
-
-
-
 
 
 export default store;
