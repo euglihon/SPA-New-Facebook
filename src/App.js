@@ -10,26 +10,27 @@ import { Route, BrowserRouter } from 'react-router-dom';
 
 
 const App = (props) => {
+
   return (
     <BrowserRouter>
       <div className='app-wrapper'>
 
         <Header />
-        <NavBar friends={props.state.friends}/>
+        <NavBar sideBar={ props.state.sideBar }/>
 
         <div className='app-wrapper-content'>
 
           <Route path='/profile'
             render={ () => <Profile
-              localState={ props.state.profilePage }
-              dispatch={props.dispatch}
+              state={ props.state.profilePage }
+              dispatch={ props.dispatch }
               /> }
           />
 
           <Route path='/messages'
             render={ () => <Dialogs
-              localState={ props.state.dialogsPage }
-              dispatch={props.dispatch}
+              state={ props.state.dialogsPage }
+              dispatch={ props.dispatch }
               /> }
           />
 
@@ -37,6 +38,8 @@ const App = (props) => {
       </div>
     </BrowserRouter>
   )
+
+  debugger;
 }
 
 export default App;

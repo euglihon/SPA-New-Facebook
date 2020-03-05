@@ -15,7 +15,7 @@ const NavBar = (props) => {
 
       <div className={classes.friendContainer}>
         {
-          props.friends.map(  (friendsElement) => {
+          props.sideBar.sideBarFriendsList.map(  (friendsElement) => {
             return (
               <FriendsBlock name={friendsElement.name} />
             )
