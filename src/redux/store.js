@@ -70,36 +70,4 @@ const store = {
 }
 
 
-
-export const addPostActionCreator = () => {
-  return {
-    type: 'ADD-POST'
-  }
-};
-
-export const updateNewValueActionCreator = (text) => {
-  return {
-    type: 'ADD-TEXTAREA-VALUE',
-    newValue: text
-  }
-};
-
-
-
-export const addMessageActionCreator = () => {
-  return {
-    type: 'ADD-MESSAGE'
-  }
-};
-
-export const updateMessageValueActionCreator = (text) => {
-
-
-  return {
-    type: 'ADD-MESSAGE-VALUE',
-    newValue: text
-  }
-}
-
-
 export default store;
