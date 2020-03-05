@@ -3,23 +3,23 @@ import classes from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import MessagesItemIn from './MessagesItemIn/MessagesItemIn';
 import MessagesItemOut from './MessageItemsOut/MessageItemsOut';
-import NewMessage from './NewMessage/NewMessage';
+import NewMessageContainer from './NewMessage/NewMessageContainer';
 
 const Dialogs = (props) => {
 
-  let dialogItems = props.localState.dialogs.map( (dialogElement) => {
+  let dialogItems = props.state.dialogs.map( (dialogElement) => {
     return (
       <DialogItem id={dialogElement.id} name={dialogElement.name} />
     )
   });
 
-  let messageItemsIn = props.localState.messagesIn.map(  (messageElement) => {
+  let messageItemsIn = props.state.messagesIn.map(  (messageElement) => {
     return (
       <MessagesItemIn messageText={messageElement.messageText} />
     )
   });
 
-  let messageItemsOut = props.localState.messagesOut.map(  (messageElement) => {
+  let messageItemsOut = props.state.messagesOut.map(  (messageElement) => {
     return (
       <MessagesItemOut messageText={messageElement.messageText} />
     )
@@ -36,8 +36,7 @@ const Dialogs = (props) => {
         { messageItemsIn }
         { messageItemsOut }
 
-
-        <NewMessage  messageTextareaValue={props.localState.messageTextareaValue} dispatch={props.dispatch} />
+        <NewMessageContainer  messageTextareaValue={props.state.messageTextareaValue} dispatch={props.dispatch} />
 
       </div>
 
