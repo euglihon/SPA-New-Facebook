@@ -5,13 +5,7 @@ const initialState = {
     {id: 3, name: 'Kolek'}
   ],
 
-  messagesIn: [
-    {id: 1, messageText: 'Hello'},
-    {id: 2, messageText: 'It\'s my first message'},
-    {id: 3, messageText: 'lol'}
-  ],
-
-  messagesOut: [
+  messages: [
     {id: 1, messageText: 'Hello React'},
     {id: 2, messageText: 'Ok'},
     {id: 3, messageText: 'Bye Bye'}
@@ -26,12 +20,21 @@ const initialState = {
 
 const dialogReducer = (state = initialState, action) => {
   if (action.type === 'ADD-MESSAGE') {
-    const newMessage = {id: 3, messageText: state.messageTextareaValue};
-    state.messagesOut.push(newMessage);
+    const copyState = {...state};
+    copyState.messages = [...state.messages];
+
+    const newMessage = {id: 3, messageText: copyState.messageTextareaValue};
+    copyState.messages.push(newMessage);
+
+    return copyState;
   }
 
   else if (action.type === 'ADD-MESSAGE-VALUE') {
-    state.messageTextareaValue = action.newValue;
+    const copyState = {...state};
+
+    copyState.messageTextareaValue = action.newValue;
+
+    return copyState;
   }
 
   return state;

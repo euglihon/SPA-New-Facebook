@@ -8,21 +8,29 @@ const initialState = {
 };
 
 
-
-
 const profileReducer = (state = initialState, action) => {
 
   if (action.type === 'ADD-POST') {
-    const newPost = { id: 3, messageText: state.textareaValue, likesCount:0 };
-    state.posts.push(newPost);
+    const copyState = {...state};    //глубокие копии
+    copyState.posts = [...state.posts];  //глубокие копии
+
+    const newPost = { id: 3, messageText: copyState.textareaValue, likesCount:0 };
+    copyState.posts.push(newPost);
+
+    return copyState
   }
 
   else if (action.type === 'ADD-TEXTAREA-VALUE') {
-    state.textareaValue = action.newValue;
+    const copyState = {...state};   //глубокие копии
+
+    copyState.textareaValue = action.newValue;
+
+    return copyState;
   }
 
   return state;
 };
+
 
 
 
