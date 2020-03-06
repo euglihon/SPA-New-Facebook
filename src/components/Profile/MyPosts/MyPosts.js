@@ -23,7 +23,7 @@ const MyPosts = (props) => {
       <h3>My posts</h3>
 
       <div>
-        <textarea onChange={ onPostChange } value={ props.newPostText }
+        <textarea onChange={ onPostChange } value={ props.textareaValue }
         />
         <button onClick={ onAddPost }>add posts</button>
       </div>

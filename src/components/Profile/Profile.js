@@ -4,14 +4,14 @@ import ProfInfo from './ProfInfo/ProfInfo';
 import MyPostsContainer from './MyPosts/MyPostsContainer';
 
 
-const Profile = (props) => {
+const Profile = () => {
 
   return (
     <div>
 
       <ProfInfo />
 
-      <MyPostsContainer state={props.state} dispatch={props.dispatch} />
+      <MyPostsContainer />
 
     </div>
   )

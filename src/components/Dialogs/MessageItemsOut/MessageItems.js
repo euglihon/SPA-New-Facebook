@@ -1,7 +1,7 @@
 import React from 'react';
-import classes from './MessageItemsOut.module.css';
+import classes from './MessageItems.module.css';
 
-const MessagesItemOut = (props) => {
+const MessagesItem = (props) => {
 
   return (
     <div>
@@ -12,4 +12,4 @@ const MessagesItemOut = (props) => {
   )
 }
 
-export default MessagesItemOut;
+export default MessagesItem;

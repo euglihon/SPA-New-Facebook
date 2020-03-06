@@ -13,7 +13,7 @@ const NavBar = (props) => {
 
       <b>Friends</b>
 
-      <div className={classes.friendContainer}>
+      {/* <div className={classes.friendContainer}>
         {
           props.sideBar.sideBarFriendsList.map(  (friendsElement) => {
             return (
@@ -21,7 +21,7 @@ const NavBar = (props) => {
             )
           })
         }
-      </div>
+      </div> */}
 
     </div>
   )
