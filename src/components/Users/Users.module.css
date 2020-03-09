@@ -1,0 +1,29 @@
+.userWrapper {
+  width: 50%;
+  margin: 15px;
+  padding: 10px;
+  display: flex;
+  border: 2px solid green;
+  border-radius: 10px;
+  justify-content: left;
+}
+
+.imageBlock {
+  text-align: center;
+}
+
+.imageBlock img {
+  margin-bottom: 10px;
+  display: block;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.contentBock {
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+
+  color: white;
+}
