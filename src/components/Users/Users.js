@@ -1,8 +1,17 @@
 import React from 'react';
 import classes from './Users.module.css';
-import usersReducer from '../../redux/usersReducer';
+import * as axios from 'axios';  //импорт всего
 
 const Users = (props) => {
+
+  if (props.users.length === 0) {
+    axios
+      .get('https://social-network.samuraijs.com/api/1.0/users')
+      .then( (response) => {
+        props.setUsers(response.data.items)
+      })
+  }
+
   return (
     <div>
       {
@@ -14,7 +23,11 @@ const Users = (props) => {
               <div className={classes.imageBlock}>
                 <img alt='#' src={ user.photoUrl }/>
 
-                { user.followed ?  <button>Unfollow</button> : <button>Follow</button> }
+                {
+                  user.followed
+                    ? <button onClick={ () => { props.unFollow(user.id) } }>Unfollow</button>
+                    : <button onClick={ () => { props.follow(user.id) } }>Follow</button>
+                }
 
               </div>
 
@@ -24,8 +37,8 @@ const Users = (props) => {
                   <div>{ user.status }</div>
                 </div>
                 <div>
-                  <div>{ user.location.country }</div>
-                  <div>{ user.location.city }</div>
+                  {/* <div>{ user.location.country }</div> */}
+                  {/* <div>{ user.location.city }</div> */}
                 </div>
               </div>
             </div>
