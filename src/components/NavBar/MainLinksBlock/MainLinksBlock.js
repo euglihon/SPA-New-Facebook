@@ -35,6 +35,13 @@ const MainLinksBlock = () => {
         </NavLink>
       </div>
       <div>
+        <NavLink to='/users'
+          activeClassName={classes.activeLink}
+        >
+          Users
+        </NavLink>
+      </div>
+      <div>
         <NavLink to='/settings'
           activeClassName={classes.activeLink}
         >
