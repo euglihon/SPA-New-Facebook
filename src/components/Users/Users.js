@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './Users.module.css';
 import * as axios from 'axios';  //импорт всего
+import userNullImg from '../../assets/images/user-null.png';
 
 const Users = (props) => {
 
@@ -21,7 +22,7 @@ const Users = (props) => {
             <div key={user.id} className={classes.userWrapper}>
 
               <div className={classes.imageBlock}>
-                <img alt='#' src={ user.photoUrl }/>
+                <img alt='#' src={ user.photos.small == null ? userNullImg : user.photos.small }/>
 
                 {
                   user.followed
