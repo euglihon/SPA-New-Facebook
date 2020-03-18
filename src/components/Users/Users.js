@@ -3,51 +3,57 @@ import classes from './Users.module.css';
 import * as axios from 'axios';  //импорт всего
 import userNullImg from '../../assets/images/user-null.png';
 
-const Users = (props) => {
+class Users extends React.Component {
 
-  if (props.users.length === 0) {
-    axios
-      .get('https://social-network.samuraijs.com/api/1.0/users')
-      .then( (response) => {
-        props.setUsers(response.data.items)
-      })
+  getUsers = () => {
+    if (this.props.users.length === 0) {
+      axios
+        .get('https://social-network.samuraijs.com/api/1.0/users')
+        .then( (response) => {
+          this.props.setUsers(response.data.items)
+        })
+    }
   }
 
-  return (
-    <div>
-      {
-        props.users.map( (user) => {
+  render() {
+    return (
+      <div>
+        <button onClick={this.getUsers}>Get users</button>
 
-          return (
-            <div key={user.id} className={classes.userWrapper}>
+        {
+          this.props.users.map( (user) => {
 
-              <div className={classes.imageBlock}>
-                <img alt='#' src={ user.photos.small == null ? userNullImg : user.photos.small }/>
+            return (
+              <div key={user.id} className={classes.userWrapper}>
 
-                {
-                  user.followed
-                    ? <button onClick={ () => { props.unFollow(user.id) } }>Unfollow</button>
-                    : <button onClick={ () => { props.follow(user.id) } }>Follow</button>
-                }
+                <div className={classes.imageBlock}>
+                  <img alt='#' src={ user.photos.small == null ? userNullImg : user.photos.small }/>
 
-              </div>
+                  {
+                    user.followed
+                      ? <button onClick={ () => { this.props.unFollow(user.id) } }>Unfollow</button>
+                      : <button onClick={ () => { this.props.follow(user.id) } }>Follow</button>
+                  }
 
-              <div className={classes.contentBock}>
-                <div>
-                  <div>{ user.name }</div>
-                  <div>{ user.status }</div>
                 </div>
-                <div>
-                  {/* <div>{ user.location.country }</div> */}
-                  {/* <div>{ user.location.city }</div> */}
+
+                <div className={classes.contentBock}>
+                  <div>
+                    <div>{ user.name }</div>
+                    <div>{ user.status }</div>
+                  </div>
+                  <div>
+                    {/* <div>{ user.location.country }</div> */}
+                    {/* <div>{ user.location.city }</div> */}
+                  </div>
                 </div>
               </div>
-            </div>
-          )
-        })
-      }
-    </div>
-  )
-}
+            )
+          })
+        }
+      </div>
+    )
+  }
+};
 
 export default Users;
