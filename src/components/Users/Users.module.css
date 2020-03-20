@@ -27,3 +27,12 @@
 
   color: white;
 }
+
+.selectPage {
+  color: red;
+}
+
+span {
+  margin: 5px;
+  cursor: pointer;
+}
