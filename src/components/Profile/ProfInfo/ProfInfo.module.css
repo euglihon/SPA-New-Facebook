@@ -1,0 +1,22 @@
+.profileImg {
+  width: 200px;
+  height: auto;
+}
+
+a {
+  display: block;
+}
+
+
+.infoBlock {
+  display: flex;
+  margin: 20px;
+}
+
+.contactBlock {
+  margin-left: 20px;
+}
+
+.links {
+  margin-top: 10px;
+}
