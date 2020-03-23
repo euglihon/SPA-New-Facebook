@@ -44,7 +44,7 @@ const mapStateToProps = (state) => {
 
 
 const UsersContainer = connect( mapStateToProps,
-      { follow, unFollow, setUsers, setCurrentPage, setTotalUsers, toggleIsFetching }
+        { follow, unFollow, setUsers, setCurrentPage, setTotalUsers, toggleIsFetching }
       ) (UsersApiComponent);
 
 export default UsersContainer;
