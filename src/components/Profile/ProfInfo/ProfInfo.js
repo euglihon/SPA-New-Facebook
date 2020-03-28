@@ -17,7 +17,7 @@ const ProfInfo = (props) => {
 
         <div className={classes.infoBlock}>
           <div>
-            <img className={classes.profileImg} alt='profile image'
+            <img className={classes.profileImg} alt='profile avatar'
               src={
                 props.profile.photos.large != null || undefined
                   ? props.profile.photos.large
