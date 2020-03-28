@@ -7,11 +7,17 @@ const initialState = {
 
 const authReducer = (state = initialState, action) => {
   switch(action.type) {
+
     case 'SET-USER-DATA':
-      const copyState = {...state, ...action.data, isAuth: true};
-      return copyState;
+      return {
+        ...state,
+        ...action.data,
+        isAuth: true
+      }
+
+    default:
+      return state;
   }
-  return state;
 };
 
 export const setAuthUserData = (id, email, login) => {

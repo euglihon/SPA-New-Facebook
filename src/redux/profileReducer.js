@@ -8,27 +8,51 @@ const initialState = {
 };
 
 const profileReducer = (state = initialState, action) => {
+  switch(action.type) {
 
-  if (action.type === 'ADD-POST') {
-    const copyState = {...state};    //глубокие копии
-    copyState.posts = [...state.posts];  //глубокие копии
-    const newPost = { id: 3, messageText: copyState.textareaValue, likesCount:0 };
-    copyState.posts.push(newPost);
-    return copyState
+    case 'ADD-POST':
+      return {
+        ...state,
+        posts: [...state.posts, {id: 3, messageText: state.textareaValue, likesCount: 0 }]
+      }
+
+      case 'ADD-TEXTAREA-VALUE':
+        return {
+          ...state,
+          textareaValue: action.newValue
+        }
+
+      case 'SET-USER-PROFILE':
+        return {
+          ...state,
+          profile: action.profile
+        }
+
+      default:
+        return state;
   }
 
-  else if (action.type === 'ADD-TEXTAREA-VALUE') {
-    const copyState = {...state};   //глубокие копии
-    copyState.textareaValue = action.newValue;
-    return copyState;
-  }
 
-  else if (action.type === 'SET-USER-PROFILE') {
-    const copyState = {...state};
-    copyState.profile = action.profile;
-    return copyState;
-  }
-  return state;
+  // if (action.type === 'ADD-POST') {
+  //   const copyState = {...state};    //глубокие копии
+  //   copyState.posts = [...state.posts];  //глубокие копии
+  //   const newPost = { id: 3, messageText: copyState.textareaValue, likesCount:0 };
+  //   copyState.posts.push(newPost);
+  //   return copyState
+  // }
+
+  // else if (action.type === 'ADD-TEXTAREA-VALUE') {
+  //   const copyState = {...state};   //глубокие копии
+  //   copyState.textareaValue = action.newValue;
+  //   return copyState;
+  // }
+
+  // else if (action.type === 'SET-USER-PROFILE') {
+  //   const copyState = {...state};
+  //   copyState.profile = action.profile;
+  //   return copyState;
+  // }
+  // return state;
 };
 
 

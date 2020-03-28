@@ -8,64 +8,128 @@ const initialState = {
 };
 
 const usersReducer = (state = initialState, action) => {
-  if (action.type === 'FOLLOW') {
-    return {
-      ...state,
-      users: state.users.map( (user) => {
-        if (user.id === action.userId) {
-          return {...user, followed: true}
-        }
-        return user
-      })
-     }
-  }
+  switch(action.type) {
 
-  else if (action.type === 'UNFOLLOW') {
-    return {
-      ...state,
-      users: state.users.map( (user) => {
-        if (user.id === action.userId) {
-          return {...user, followed: false}
-        }
-        return user
-      })
-     }
-  }
+    case 'FOLLOW':
+      return {
+        ...state,
+        users: state.users.map( (user) => {
+          if(user.id === action.userId) {
+            return {...user, followed: true}
+          }
+          return user;
+        })
+      }
 
-  else if (action.type === 'SET-USERS') {
-    const copyState = {...state};
-    copyState.users = [...action.users]; //add users
-    return copyState;
-  }
+    case 'UNFOLLOW':
+      return {
+        ...state,
+        users: state.users.map( ( user) => {
+          if(user.id === action.userId) {
+            return {...user, followed: false}
+          }
+          return user;
+        })
+      }
 
-  else if (action.type === 'SET-CURRENT-PAGE') {
-    const copyState = {...state};
-    copyState.currentPage = action.page;
-    return copyState;
-  }
+    case 'SET-USERS':
+      return {
+        ...state,
+        users: [...action.users]
+      }
 
-  else if (action.type === 'SET-TOTAL-USERS-COUNT') {
-    const copyState = {...state};
-    copyState.totalUsersCount = action.totalUsers;
-    return copyState;
-  }
+    case 'SET-CURRENT-PAGE':
+      return {
+        ...state,
+        currentPage: action.page
+      }
 
-  else if (action.type === 'TOGGLE-IS-FETCHING') {
-    const copyState = {...state};
-    copyState.isFetching = action.isFetching;
-    return copyState;
-  }
+    case 'SET-TOTAL-USERS-COUNT':
+      return {
+        ...state,
+        totalUsersCount: action.totalUsers
+      }
 
-  else if (action.type === 'TOGGLE-IS-PROGRESS') {
-    return {
-      ...state,
-      followingInProgress: action.isProgress === true
-        ? [...state.followingInProgress, action.userId]
-        : state.followingInProgress.filter((id) => id != action.userId)
-    }
+    case 'TOGGLE-IS-FETCHING':
+      return {
+        ...state,
+        isFetching: action.isFetching
+      }
+
+    case 'TOGGLE-IS-PROGRESS':
+      return {
+        ...state,
+        followingInProgress: action.isProgress === true
+          ? [...state.followingInProgress, action.userId]
+          : state.followingInProgress.filter((id) => id !== action.userId)
+      }
+
+    default:
+      return state;
   }
-  return state;
 };
+
+
+
+
+  // if (action.type === 'FOLLOW') {
+  //   return {
+  //     ...state,
+  //     users: state.users.map( (user) => {
+  //       if (user.id === action.userId) {
+  //         return {...user, followed: true}
+  //       }
+  //       return user
+  //     })
+  //    }
+  // }
+
+  // else if (action.type === 'UNFOLLOW') {
+  //   return {
+  //     ...state,
+  //     users: state.users.map( (user) => {
+  //       if (user.id === action.userId) {
+  //         return {...user, followed: false}
+  //       }
+  //       return user
+  //     })
+  //    }
+  // }
+
+  // else if (action.type === 'SET-USERS') {
+  //   const copyState = {...state};
+  //   copyState.users = [...action.users]; //add users
+  //   return copyState;
+  // }
+
+  // else if (action.type === 'SET-CURRENT-PAGE') {
+  //   const copyState = {...state};
+  //   copyState.currentPage = action.page;
+  //   return copyState;
+  // }
+
+  // else if (action.type === 'SET-TOTAL-USERS-COUNT') {
+  //   const copyState = {...state};
+  //   copyState.totalUsersCount = action.totalUsers;
+  //   return copyState;
+  // }
+
+  // else if (action.type === 'TOGGLE-IS-FETCHING') {
+  //   const copyState = {...state};
+  //   copyState.isFetching = action.isFetching;
+  //   return copyState;
+  // }
+
+  // else if (action.type === 'TOGGLE-IS-PROGRESS') {
+  //   return {
+  //     ...state,
+  //     followingInProgress: action.isProgress === true
+  //       ? [...state.followingInProgress, action.userId]
+  //       : state.followingInProgress.filter((id) => id !== action.userId)
+  //   }
+  // }
+  // return state;
+
 
 
 export const follow = (userId) => {
