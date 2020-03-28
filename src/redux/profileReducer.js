@@ -1,3 +1,5 @@
+import { profileAPI } from '../api/api';
+
 const initialState = {
   posts: [
     {id: 1, messageText: 'Hello New-Facebook', likesCount: 10},
@@ -31,28 +33,6 @@ const profileReducer = (state = initialState, action) => {
       default:
         return state;
   }
-
-
-  // if (action.type === 'ADD-POST') {
-  //   const copyState = {...state};    //глубокие копии
-  //   copyState.posts = [...state.posts];  //глубокие копии
-  //   const newPost = { id: 3, messageText: copyState.textareaValue, likesCount:0 };
-  //   copyState.posts.push(newPost);
-  //   return copyState
-  // }
-
-  // else if (action.type === 'ADD-TEXTAREA-VALUE') {
-  //   const copyState = {...state};   //глубокие копии
-  //   copyState.textareaValue = action.newValue;
-  //   return copyState;
-  // }
-
-  // else if (action.type === 'SET-USER-PROFILE') {
-  //   const copyState = {...state};
-  //   copyState.profile = action.profile;
-  //   return copyState;
-  // }
-  // return state;
 };
 
 
@@ -75,5 +55,17 @@ export const setUserProfile = (profile) => {
     profile: profile
   }
 };
+
+
+export const getProfileDataThunk = (userId) => {
+  return (dispatch) => {
+    profileAPI.getProfile(userId)
+    .then( (data) => {
+        dispatch(setUserProfile(data))
+    })
+  }
+}
+
+
 
 export default profileReducer;

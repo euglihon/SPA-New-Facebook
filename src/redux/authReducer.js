@@ -1,3 +1,5 @@
+import { loginAPI } from '../api/api';
+
 const initialState = {
   id: null,
   email: null,
@@ -26,5 +28,17 @@ export const setAuthUserData = (id, email, login) => {
     data: {id, email, login}
   };
 };
+
+export const getAuthThunk = () => {
+  return (dispatch) => {
+    loginAPI.getLoginInfo()
+    .then( (data) => {
+       if(data.resultCode === 0) {  //login --> true
+         const {id, email, login} = data.data
+         dispatch(setAuthUserData(id, email, login));
+       }
+    } )
+  }
+}
 
 export default authReducer;
