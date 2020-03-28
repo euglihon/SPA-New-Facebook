@@ -1,3 +1,5 @@
+import { usersAPI, followUnFolowAPI } from '../api/api';
+
 const initialState = {
   users: [],
   pageSize: 20,
@@ -70,68 +72,6 @@ const usersReducer = (state = initialState, action) => {
 };
 
 
-
-
-  // if (action.type === 'FOLLOW') {
-  //   return {
-  //     ...state,
-  //     users: state.users.map( (user) => {
-  //       if (user.id === action.userId) {
-  //         return {...user, followed: true}
-  //       }
-  //       return user
-  //     })
-  //    }
-  // }
-
-  // else if (action.type === 'UNFOLLOW') {
-  //   return {
-  //     ...state,
-  //     users: state.users.map( (user) => {
-  //       if (user.id === action.userId) {
-  //         return {...user, followed: false}
-  //       }
-  //       return user
-  //     })
-  //    }
-  // }
-
-  // else if (action.type === 'SET-USERS') {
-  //   const copyState = {...state};
-  //   copyState.users = [...action.users]; //add users
-  //   return copyState;
-  // }
-
-  // else if (action.type === 'SET-CURRENT-PAGE') {
-  //   const copyState = {...state};
-  //   copyState.currentPage = action.page;
-  //   return copyState;
-  // }
-
-  // else if (action.type === 'SET-TOTAL-USERS-COUNT') {
-  //   const copyState = {...state};
-  //   copyState.totalUsersCount = action.totalUsers;
-  //   return copyState;
-  // }
-
-  // else if (action.type === 'TOGGLE-IS-FETCHING') {
-  //   const copyState = {...state};
-  //   copyState.isFetching = action.isFetching;
-  //   return copyState;
-  // }
-
-  // else if (action.type === 'TOGGLE-IS-PROGRESS') {
-  //   return {
-  //     ...state,
-  //     followingInProgress: action.isProgress === true
-  //       ? [...state.followingInProgress, action.userId]
-  //       : state.followingInProgress.filter((id) => id !== action.userId)
-  //   }
-  // }
-  // return state;
-
-
-
 export const follow = (userId) => {
   return {
     type: 'FOLLOW',
@@ -179,6 +119,49 @@ export const toggleIsFollowingProgress = (isProgress, userId) => {
     type: 'TOGGLE-IS-PROGRESS',
     isProgress: isProgress,
     userId: userId
+  }
+}
+
+
+
+export const getUsersThunk = (currentPage, pageSize) => {
+  return (dispatch) => {
+    dispatch(setUsers([])); //чистим массив юзеров перед первой загрузуой страницы
+    dispatch(toggleIsFetching(true)); //load preloader
+    dispatch(setCurrentPage(currentPage)); //устанавливаем страницу пользователей на которой мы находимся
+
+    usersAPI.getUsers(currentPage, pageSize)  //api get func
+      .then( (data) => {      //return api get func
+        dispatch(toggleIsFetching(false));   //cancel preloader
+        dispatch(setTotalUsers(data.totalCount)); //add all users (number)
+        dispatch(setUsers(data.items)); //add page users
+      })
+  }
+}
+
+export const followThunk = (userId) => {
+  return (dispatch) => {
+    dispatch(toggleIsFollowingProgress(true, userId))
+    followUnFolowAPI.postFollow(userId)
+      .then( (resultCode) => {
+          if(resultCode === 0) {
+            dispatch(follow(userId));
+          }
+          dispatch(toggleIsFollowingProgress(false, userId))
+      })
+  }
+}
+
+export const unFollowThunk = (userId) => {
+  return (dispatch) => {
+    dispatch(toggleIsFollowingProgress(true, userId))
+    followUnFolowAPI.deleteFollow(userId)
+      .then( (resultCode) => {
+          if(resultCode === 0) {
+            dispatch(unFollow(userId));
+          }
+          dispatch(toggleIsFollowingProgress(false, userId))
+      })
   }
 }
 
