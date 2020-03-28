@@ -45,3 +45,13 @@ export const followUnFolowAPI = {
     )
   }
 }
+
+ export const loginAPI = {
+   getLoginInfo() {
+     return (
+      instance
+        .get('auth/me')
+        .then( (response) => response.data )
+     )
+   }
+ }
