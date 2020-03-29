@@ -15,20 +15,16 @@ export const usersAPI = {
         .get(`users?page=${currentPage}&count=${pageSize}`)
         .then( (response) => response.data )
     )
-  }
-}
+  },
 
-export const profileAPI = {
   getProfile(userId) {
     return (
       instance
         .get(`profile/${userId}`)
         .then( (response) => response.data)
     )
-  }
-}
+  },
 
-export const followUnFolowAPI = {
   deleteFollow(userId) {
     return (
       instance
@@ -43,15 +39,15 @@ export const followUnFolowAPI = {
         .post(`follow/${userId}`, {})
         .then( (response) => response.data.resultCode)
     )
+  },
+
+  getLoginInfo() {
+    return (
+     instance
+       .get('auth/me')
+       .then( (response) => response.data )
+    )
   }
+
 }
 
- export const loginAPI = {
-   getLoginInfo() {
-     return (
-      instance
-        .get('auth/me')
-        .then( (response) => response.data )
-     )
-   }
- }

@@ -1,4 +1,4 @@
-import { profileAPI } from '../api/api';
+import { usersAPI } from '../api/api';
 
 const initialState = {
   posts: [
@@ -59,7 +59,7 @@ export const setUserProfile = (profile) => {
 
 export const getProfileDataThunk = (userId) => {
   return (dispatch) => {
-    profileAPI.getProfile(userId)
+    usersAPI.getProfile(userId)
     .then( (data) => {
         dispatch(setUserProfile(data))
     })
