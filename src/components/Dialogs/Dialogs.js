@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import MessagesItems from './MessageItems/MessageItems';
+import { Redirect } from 'react-router-dom';
 
 
 
@@ -21,6 +22,7 @@ const Dialogs = (props) => {
   }
 
 
+  if (props.isAuth === false) { return <Redirect to={'/login'} /> }
 
   return (
     <div className={classes.dialogs}>
@@ -32,7 +34,6 @@ const Dialogs = (props) => {
       <div className={classes.messagesItems}>
         { messageElements }
 
-
         <div>
           <textarea
             onChange={ onMessageChange }
@@ -40,9 +41,13 @@ const Dialogs = (props) => {
           />
           <button onClick={ onAddMessage }>sent message</button>
         </div>
-        </div>
       </div>
+    </div>
   )
+
 }
+
+
+
 
 export default Dialogs;
