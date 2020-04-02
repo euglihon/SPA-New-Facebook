@@ -2,9 +2,6 @@ import React from 'react';
 import classes from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import MessagesItems from './MessageItems/MessageItems';
-import { Redirect } from 'react-router-dom';
-
-
 
 const Dialogs = (props) => {
   let dialogsElements = props.dialogsPage.dialogs.map( (dialogElement) => <DialogItem id={dialogElement.id} name={dialogElement.name} />);
