@@ -17,14 +17,6 @@ export const usersAPI = {
     )
   },
 
-  getProfile(userId) {
-    return (
-      instance
-        .get(`profile/${userId}`)
-        .then( (response) => response.data)
-    )
-  },
-
   deleteFollow(userId) {
     return (
       instance
@@ -39,8 +31,10 @@ export const usersAPI = {
         .post(`follow/${userId}`, {})
         .then( (response) => response.data.resultCode)
     )
-  },
+  }
+}
 
+export const LoginAPI = {
   getLoginInfo() {
     return (
      instance
@@ -48,6 +42,29 @@ export const usersAPI = {
        .then( (response) => response.data )
     )
   }
-
 }
 
+export const ProfileAPI = {
+  getProfile(userId) {
+    return (
+      instance
+        .get(`profile/${userId}`)
+        .then( (response) => response.data)
+    )
+  },
+
+  getStatus(userId) {
+    return (
+      instance
+        .get(`profile/status/${userId}`)
+        .then( (response) => response.data)
+    )
+  },
+
+  updateStatus(status) {
+    return (
+      instance
+        .put('profile/status', { status: status })
+    )
+  }
+}
