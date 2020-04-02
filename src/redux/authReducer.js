@@ -1,4 +1,4 @@
-import { usersAPI } from '../api/api';
+import { LoginAPI } from '../api/api';
 
 const initialState = {
   id: null,
@@ -31,7 +31,7 @@ export const setAuthUserData = (id, email, login) => {
 
 export const getAuthThunk = () => {
   return (dispatch) => {
-    usersAPI.getLoginInfo()
+    LoginAPI.getLoginInfo()
     .then( (data) => {
        if(data.resultCode === 0) {  //login --> true
          const {id, email, login} = data.data
