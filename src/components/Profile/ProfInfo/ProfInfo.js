@@ -1,7 +1,8 @@
 import React from 'react';
 import classes from './ProfInfo.module.css';
 import Preloader from '../../common/Preloader/Preloader';
-import nullProfileImg from '../../../assets/images/user-null.png'
+import nullProfileImg from '../../../assets/images/user-null.png';
+import ProfileStatus from './ProfileStatus/ProfileStatus';
 
 const ProfInfo = (props) => {
   if (props.profile === null || undefined) {
@@ -11,9 +12,6 @@ const ProfInfo = (props) => {
   } else {
     return (
       <div>
-        <div>
-          <img alt='#' src='https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.ucdmc.ucdavis.edu%2Femergency%2Fimages%2Fbody%2Fwilderness%2Fwilderness_wide_01.jpg&f=1&nofb=1' />
-        </div>
 
         <div className={classes.infoBlock}>
           <div>
@@ -27,6 +25,10 @@ const ProfInfo = (props) => {
           </div>
 
           <div className={classes.contactBlock}>
+
+            <ProfileStatus status={props.status} updateProfileStatusThunk={props.updateProfileStatusThunk}/>
+
+
             <h1>{props.profile.fullName}</h1>
             <p>{props.profile.aboutMe}</p>
 
