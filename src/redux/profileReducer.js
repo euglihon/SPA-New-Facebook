@@ -1,4 +1,4 @@
-import { usersAPI } from '../api/api';
+import { ProfileAPI } from '../api/api';
 
 const initialState = {
   posts: [
@@ -6,7 +6,8 @@ const initialState = {
     {id: 2, messageText: 'Hello React', likesCount: 5}
   ],
   textareaValue: '',
-  profile: null
+  profile: null,
+  status: ''
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -30,6 +31,12 @@ const profileReducer = (state = initialState, action) => {
           profile: action.profile
         }
 
+      case 'SET-STATUS':
+        return {
+          ...state,
+          status: action.status
+        }
+
       default:
         return state;
   }
@@ -49,19 +56,48 @@ export const updateNewValueActionCreator = (text) => {
   }
 };
 
-export const setUserProfile = (profile) => {
+const setUserProfile = (profile) => {
   return {
     type: 'SET-USER-PROFILE',
     profile: profile
   }
 };
 
+const setStatus = (status) => {
+  return {
+    type: 'SET-STATUS',
+    status: status
+  }
+}
+
+
 
 export const getProfileDataThunk = (userId) => {
   return (dispatch) => {
-    usersAPI.getProfile(userId)
+    ProfileAPI.getProfile(userId)
     .then( (data) => {
         dispatch(setUserProfile(data))
+    })
+  }
+}
+
+export const getProfileStatusThunk = (userId) => {
+  return (dispatch) => {
+    ProfileAPI.getStatus(userId)
+    .then( (data) => {
+      dispatch(setStatus(data))
+    })
+  }
+}
+
+export const updateProfileStatusThunk = (status) => {
+  return (dispatch) => {
+    ProfileAPI.updateStatus(status)
+    .then( (response) => {
+      debugger;
+      if(response.data.resultCode === 0) {
+        dispatch(setStatus(status))
+      }
     })
   }
 }
